@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterworlds/page2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -61,6 +63,14 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _decrementCounter() {
+    if (_counter > 0) {
+      setState(() {
+        _counter--;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -96,12 +106,33 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'You have flicked the bean this many times:',
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            TextButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateColor.resolveWith(
+                        (states) => Colors.blue)),
+                onPressed: _decrementCounter,
+                child: const Text(
+                  "Decrement counter",
+                  style: TextStyle(color: Colors.white),
+                )),
+            TextButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateColor.resolveWith(
+                        (states) => Colors.brown)),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Page2()));
+                },
+                child: const Text(
+                  "Next",
+                  style: TextStyle(color: Colors.black38),
+                ))
           ],
         ),
       ),
