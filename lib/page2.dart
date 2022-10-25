@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Page2 extends StatefulWidget {
   const Page2({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class Page2State extends State<Page2> {
     return Scaffold(
       body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           const Text("Page 2 Yo"),
           const Text(
@@ -23,14 +24,23 @@ class Page2State extends State<Page2> {
             style: TextStyle(color: Colors.greenAccent),
           ),
           Row(
-           mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              TextButton(onPressed: null, child: Text("Item One in the Row")),
-              TextButton(onPressed: null, child: Text("Item Two in the Row")),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                  onPressed: showToast,
+                  child: const Text("Item One in the Row")),
+              const TextButton(
+                  onPressed: null, child: Text("Item Two in the Row")),
             ],
           )
         ],
       )),
+    );
+  }
+
+  void showToast() {
+    Fluttertoast.showToast(
+        msg: "Hey theres a toast here"
     );
   }
 }
